@@ -16,5 +16,5 @@ def longestWPI(hours):
             window_size-=1
         print(best_time)
         return best_time
-hours=[9,9,6,0,6,6,9]
+hours=[9,9,6,0,6,6,9,5]
 longestWPI(hours)
