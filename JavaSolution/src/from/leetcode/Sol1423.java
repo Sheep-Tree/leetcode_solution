@@ -2,28 +2,27 @@ package from.leetcode;
 import java.util.Arrays;
 
 public class Sol1423 {
-	    int sum_max = 0;
 	    public int maxScore(int[] cardPoints, int k) {
-	        if (k >= cardPoints.length){
-	            int sum = 0;
-	            for(int num:cardPoints){
-	                sum += num;
-	            }
-	            return sum;
-	        }
-	        backtrack(cardPoints,k,0);
-	        return sum_max;
+	        //问题转换 求剩下的连续的n个的最小值
+	    	int n = cardPoints.length;
+	    	int x = n-k;
+	    	int first_sum = 0;
+	    	//计算第一个滑动窗口的值
+	    	for(int i=0;i<x;i++) {
+	    		first_sum += cardPoints[i];
+	    	}
+	    	int min_sum = first_sum;
+	    	for(int i=1;i<=n-x;i++) {
+	    		first_sum = first_sum-cardPoints[i-1]+cardPoints[i+x-1];
+	    		min_sum = first_sum<min_sum?first_sum:min_sum;
+	    	}
+	    	return Arrays.stream(cardPoints).sum()-min_sum;
 	    }
-
-	    public void backtrack(int[] cardPoints, int k, int sum){
-	        if(k == 1){
-	            sum += cardPoints[0]>cardPoints[cardPoints.length-1]?cardPoints[0]:cardPoints[cardPoints.length-1];
-	            if(sum > sum_max){
-	                sum_max = sum;
-	            }
-	        }else{
-	            backtrack(Arrays.copyOfRange(cardPoints,1,cardPoints.length-1),k-1,sum+cardPoints[0]);
-	            backtrack(Arrays.copyOfRange(cardPoints,0,cardPoints.length-2),k-1,sum+cardPoints[cardPoints.length-1]);
-	        }
+	    
+	    public void run() {
+	    	int[] cardPoints = {96,90,41,82,39,74,64,50,30};
+	    	int k = 8;
+	    	int result = maxScore(cardPoints,k);
+	    	System.out.print(result);
 	    }
 }

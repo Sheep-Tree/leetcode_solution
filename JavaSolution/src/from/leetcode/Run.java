@@ -1,5 +1,8 @@
 package from.leetcode;
-//用来运行
+import from.leetcode.Sol1423;
 public class Run {
-
+	public static void main(String[] args) {
+		Sol1423 mysol = new Sol1423();
+		mysol.run();
+	}
 }
