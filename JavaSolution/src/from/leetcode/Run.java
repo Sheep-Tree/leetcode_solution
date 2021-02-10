@@ -2,7 +2,7 @@ package from.leetcode;
 
 public class Run {
 	public static void main(String[] args) {
-		Sol480 mysol = new Sol480();
+		Sol567 mysol = new Sol567();
 		mysol.run();
 	}
 }
